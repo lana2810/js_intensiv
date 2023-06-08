@@ -24,21 +24,35 @@ Person.prototype.logInfo = function () {
 person2.logInfo();
 
 class PersonClass {
-  constructor(name, age) {
-    this.name = name;
+  constructor(age, sex) {
     this.age = age;
+    this.sex = sex;
   }
 }
 
-const personClass = new Person("Ivan", 30);
-const person2Class = new personClass.constructor("Masha", 31);
+const personClass = new PersonClass("Мужчина", 30);
+const person2Class = new personClass.constructor("Женщина", 31);
 
 PersonClass.prototype.logInfo = function () {
-  console.log(`Hello ${this.name}`);
+  console.log(`Hello ${this.sex}`);
 };
 personClass.logInfo();
 
-// Бонус
+// Создать класс PersonThree c get и set для поля name и конструктором, сделать класс наследник от класса Person.
+
+class PersonThree extends PersonClass {
+  constructor(_name, age, sex) {
+    super(age, sex);
+    this._name = _name;
+  }
+  set name(value) {
+    this._name = value;
+  }
+  get name() {
+    return this._name;
+  }
+}
+
 // Сложность у этого алгоритма O(n^2)
 const firstSum = (arr, total) => {
   for (let i = 0; i < arr.length; i++) {
